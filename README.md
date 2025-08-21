@@ -47,48 +47,58 @@
 
 ## Start up the ROS Master Node
 
-```roscore```
+```
+roscore
+```
 
 ## Setup connection with the robot
 
 **Make sure to source the workspace on each terminal.**
 
-```source devel/setup.bash```
+```
+source devel/setup.bash
+sudo chmod +777 /dev/ttyUSB0
+```
 
-```sudo chmod +777 /dev/ttyUSB0```
-
-```rosrun rosaria RosAria```
+- Next, after turning the robot power ON, run the command below to establish connection with the robot, which can be conformed by a beep from the robot.
+```
+rosrun rosaria RosAria
+```
+- Next, to teleop the robot, run the command below which will give you the keyboard control over the robot. W -forwards, A- left, D- right, S- stop, X- backwards.
+```
+rosrun p3dx_control robot_teleop_key 
+```
 
 ## Setting up the Camera
 
-```roslaunch realsense2_camera rs_camera.launch align_depth:=true```
+```
+roslaunch realsense2_camera rs_camera.launch align_depth:=true
+```
 
 To get pointclouds from the RGBD images:
 
-```roslaunch realsense2_camera rs_camera.launch align_depth:=true enable_pointcloud:=true```
+```
+roslaunch realsense2_camera rs_camera.launch align_depth:=true enable_pointcloud:=true
+```
 
 ## Setup the conversion of RGBD images to Laser Scans
 
-```roslaunch depthimage_to_laserscan launchfile_sample.launch```
+```
+roslaunch depthimage_to_laserscan launchfile_sample.launch
+```
 
 ## Setup the navigation node
 
-```roslaunch turtlebot3_navigation turtlebot3_navigation.launch```
+```
+roslaunch turtlebot3_navigation turtlebot3_navigation.launch
+```
 
 ## Setting up Parser Based Navigation
 
-```rosrun turtlebot3_navigation talker```
-
-```rosrun turtlebot3_navigation Voice_NLP```
-
-## Start up the ROS
-
-1. Launch
-   ```
-   sudo chmod +777 /dev/ttyUSB0
-   roslaunch husky_base base.launch 
-   ```
-   - Optionally, you can plug a joystick and teleop the robot.
+```
+rosrun turtlebot3_navigation talker
+rosrun turtlebot3_navigation Voice_NLP
+```
 
 ## Docker
 
