@@ -1,0 +1,19 @@
+name: Build Multi-Architecture ROS Containers
+
+on:
+  push:
+    branches: [ main, master ]
+    tags:
+      - 'v*'  # This will trigger on any tag starting with 'v', like v1.0.0
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  main-build:
+    name: ROS2 Humble Base Images (AMD64)
+    uses: ./.github/workflows/build-workflow.yaml
+    with:
+      build_context: .devcontainer
+      image_name: p3dx_base
+      image_version: latest
+      runs_on: ubuntu-latest
